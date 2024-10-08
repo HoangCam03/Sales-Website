@@ -1,0 +1,33 @@
+.Menu {
+    display: flex;
+    padding: 7px 16px;
+    -webkit-box-align: center;
+    align-items: center;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.Menu:hover {
+    background: rgba(39, 39, 42, 0.12);
+}
+
+.Menu-icons {
+    width: 15px;
+    flex: 0 0 32px;
+    height: 32px;
+    margin-right: 8px;
+    line-height: 32px;
+    font-size: 20px;
+}
+.Menu-title {
+    text-align: left;
+    font-weight: 400;
+    font-size: 14px;
+    color: rgb(39, 39, 42);
+}
+
+img,
+svg {
+    width: 32px;
+    vertical-align: middle;
+}

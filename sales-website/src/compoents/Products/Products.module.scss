@@ -1,0 +1,107 @@
+.product-frame {
+    --height-rate: 16px;
+    --width-rate: 50px;
+    width: 20%;
+    height: 100%;
+    // border-radius: 40px;
+    padding: 16px;
+    display: grid;
+    place-items: center;
+    justify-content: center;
+    align-items: center;
+}
+.product-frame:hover {
+    cursor: pointer;
+
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2); /* Bóng đổ */
+    transform: translateY(-5px);
+}
+.prd-img {
+    position: relative;
+}
+
+.product-photo {
+    width: 240px;
+    height: 330px;
+    background-size: auto;
+    border-radius: 25px 25px 0px 0px;
+}
+.product-logo {
+    position: absolute;
+    width: 250px;
+    left: 0;
+    bottom: 0;
+}
+
+.content {
+    width: 240px;
+    height: 100px;
+    background-color: #fff;
+    border-radius: 0px 0px 25px 25px;
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    gap: 4px;
+    flex: 1 1 0%;
+}
+.title {
+    align-self: stretch;
+    text-align: center;
+    overflow: hidden;
+    color: var(--Alias-Primary---On-Theme, #27272a);
+    text-overflow: ellipsis;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 150%;
+    margin: 0px;
+    word-break: break-word;
+}
+
+.rate {
+    width: 100%;
+    height: var(--height-rate);
+    display: flex;
+    position: relative;
+    text-align: center;
+}
+
+.star {
+    display: flex;
+    height: var(--height-rate);
+    width: var(--width-rate);
+    font-size: 12px;
+    color: yellow;
+}
+.sold {
+    position: absolute;
+    right: 0;
+    line-height: var(--height-rate);
+    color: rgb(246, 130, 140);
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+}
+.product-price {
+    position: relative;
+    color: rgb(255, 66, 78);
+}
+.sup {
+    position: absolute;
+    text-decoration: underline;
+    padding: 0px 0px 4px 4px;
+    font-size: 14px;
+    bottom: 4px;
+}
+.price-discount {
+    width: 35px;
+    padding: 0px 4px;
+    border-radius: 8px;
+    background-color: #f5f5fa;
+    color: var(--Alias-Primary---On-Theme, #27272a);
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+}

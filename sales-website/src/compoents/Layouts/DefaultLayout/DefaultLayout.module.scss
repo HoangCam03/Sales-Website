@@ -1,0 +1,46 @@
+.wrapper {
+    display: flex;
+    flex-direction: column; // quay sang chieu doc
+    align-items: center;
+    gap: 20px;
+    background-color: #f5f5fa;
+}
+.container {
+    justify-content: space-between;
+    display: flex;
+    width: 100%;
+    min-height: 1000px;
+    gap: 20px;
+}
+.sidebar {
+    // position: sticky;
+    // top: 0;
+    // z-index: 1;
+    width: 100%;
+}
+.content {
+    width: 1280px;
+    justify-content: center;
+    align-items: center;
+    min-height: 150px; /* Chiều cao tối thiểu bằng chiều cao trang */
+}
+.Products {
+    display: flex;
+    flex-direction: column;
+    width: 98%;
+    margin-top: 25px;
+    background-color: tan;
+}
+.Products-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+.add-Btn {
+    display: flex;
+    justify-content: center;
+    width: 98%;
+    text-align: center;
+}

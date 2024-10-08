@@ -1,0 +1,46 @@
+.wrapper {
+    display: flex;
+    flex-direction: column; // quay sang chieu doc
+    align-items: center;
+    gap: 20px;
+    background-color: #f5f5fa;
+}
+.container {
+    justify-content: space-between;
+    display: flex;
+    width: 100%;
+    min-height: 1000px;
+    gap: 20px;
+}
+.content {
+    width: 100%;
+    background-color: pink;
+    border-radius: 8px;
+}
+.sidebar {
+    // position: sticky;
+    // top: 0;
+    // z-index: 1;
+    width: 240px;
+    height: 100%;
+}
+.Products {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 25px;
+    justify-content: center;
+}
+.Products-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+.Pagination {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    margin-top: 20px;
+}
