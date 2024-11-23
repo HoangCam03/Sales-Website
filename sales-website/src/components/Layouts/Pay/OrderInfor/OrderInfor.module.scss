@@ -1,0 +1,210 @@
+.wrapper {
+    width: 320px;
+    max-height: 100vh;
+    text-align: center;
+    margin-bottom: 16px;
+    padding: 0px 8px;
+
+    border-radius: 8px;
+}
+
+.Section__Container {
+    font-size: 14px;
+    padding: 20px;
+    line-height: 20px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+    background-color: #fff;
+}
+.block-header {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+.block-header__title {
+    color: rgb(128, 128, 137);
+    font-weight: normal;
+    margin: 0px;
+}
+a {
+    color: rgb(11, 116, 229);
+    text-decoration: none;
+}
+.customer_info {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(56, 56, 61);
+    margin-bottom: 2px;
+    font-weight: 600;
+}
+.customer_info p {
+    margin: 0px;
+    word-break: break-word;
+}
+.customer_info i {
+    display: block;
+    width: 1px;
+    height: 20px;
+    background-color: rgb(235, 235, 240);
+    margin: 0px 8px;
+}
+.address {
+    color: rgb(128, 128, 137);
+    font-weight: normal;
+    text-align: justify;
+}
+.address__type--home {
+    color: rgb(0, 171, 86);
+    background-color: rgb(239, 255, 244);
+    margin-right: 5px;
+}
+.order-summary {
+    border-radius: 8px;
+    margin-bottom: 12px;
+    padding: 0px;
+    width: 100%;
+    background-color: #fff;
+}
+
+.block-header {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 16px;
+    border-bottom: 1px solid rgb(235, 235, 240);
+}
+.order {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: baseline;
+    column-gap: 8px;
+}
+
+.block-header__title {
+    font-weight: 500;
+    color: rgb(56, 56, 61);
+    margin: 0px;
+}
+.block-header__sub-title {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.block-header__sub-title .sub-title-text {
+    color: rgb(128, 128, 137);
+    font-weight: 400;
+    margin: 0px 4px 0px 0px;
+}
+.sub-title-link {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(11, 116, 229);
+    font-weight: 400;
+    margin: 0px;
+    cursor: pointer;
+}
+.sub-title-link__arrow {
+    transform: rotate(90deg);
+    transition-duration: 0.5s;
+    /* font-size: 5px; */
+    width: 12px;
+    margin-left: 5px;
+}
+.order-information {
+    padding: 0px 16px;
+    display: grid;
+    gap: 8px;
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.container {
+    padding: 8px 16px;
+    display: grid;
+    gap: 8px;
+    font-size: 14px;
+    line-height: 21px;
+    // border-bottom: 1px solid rgb(235, 235, 240);
+}
+.list-container {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    column-gap: 8px;
+}
+
+.summary-lable {
+    color: rgb(128, 128, 137);
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+.summary-value {
+    color: rgb(39, 39, 42);
+    min-width: fit-content;
+}
+.text-green {
+    color: rgb(0, 171, 86);
+}
+
+.grid {
+    border-bottom: 1px solid rgb(235, 235, 240);
+}
+
+.total-price {
+    width: 100%;
+    margin: 0px auto;
+}
+.order-total {
+    padding: 8px 0px;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    column-gap: 8px;
+}
+.order-total__label {
+    font-size: 14px;
+    line-height: 20px;
+    color: rgb(39, 39, 42);
+    font-weight: 500;
+}
+.order-total__value {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    max-width: 60%;
+    min-width: fit-content;
+}
+.order-total__total {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    color: rgb(255, 66, 78);
+}
+.order-total__saving {
+    color: rgb(0, 171, 86);
+    line-height: 21px;
+}
+.bSkntM {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    column-gap: 8px;
+    padding: 0px 8px 16px;
+    text-align: center;
+}
+.order-total__additional-text {
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+    color: rgb(128, 128, 137);
+}
+.buy {
+    margin: 0px 16px 16px;
+}

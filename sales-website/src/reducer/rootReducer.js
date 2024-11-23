@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 
-import counterReducer from './counterReducer';
+import userSlide from './userSlide';
+import productSlide from './productSlide';
 
 const rootReducer = combineReducers({
-    counter: counterReducer,
+    userSlide: userSlide,
+    productSlide: productSlide,
 });
 
 export default rootReducer;

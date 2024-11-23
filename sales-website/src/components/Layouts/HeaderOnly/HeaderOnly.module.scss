@@ -1,0 +1,94 @@
+/* Header Styles */
+.wrapper {
+    width: 100%;
+    height: var(--default-layout-height);
+    --search-height: 46px;
+    --search-border-radius: 92px;
+    --search-top-spacer: 9px;
+    --search-button-width: 52px;
+    box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
+    display: flex;
+    background-color: #fff;
+    position: relative;
+}
+
+.inner {
+    width: 100%;
+    display: flex;
+    gap: 12px; //48px
+    height: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 24px;
+    padding-right: 24px;
+    margin-right: 40px;
+    margin-left: 40px;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.options-list {
+    display: flex;
+    position: absolute;
+    gap: 16px;
+    list-style-type: none;
+    font-weight: 400;
+    font-size: 14px;
+    color: rgb(128, 128, 137);
+    white-space: nowrap;
+    margin-left: -20px;
+}
+
+.logo {
+    margin-top: 15px;
+}
+
+.logo-tiki {
+    display: flex;
+    flex-direction: column;
+    width: 96px;
+    aspect-ratio: auto 96 / 40;
+    height: 40px;
+}
+
+.logo-slogan {
+    font-size: 14px;
+    color: rgb(0, 62, 161);
+    margin-top: 8px;
+    font-weight: 600;
+    text-align: center;
+    padding-left: 9px;
+}
+.divider {
+    width: 1px;
+    height: 32px;
+    background-color: rgb(26, 148, 255);
+    margin: 0px 16px;
+    display: block;
+}
+.title {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+    color: rgb(26, 167, 255);
+}
+.avatar {
+    width: 56px; /* Kích thước ảnh */
+    height: 56px;
+    border-radius: 50%; /* Bo tròn */
+    object-fit: cover; /* Đảm bảo hình ảnh không bị méo */
+    border: 2px solid rgb(26, 148, 255); /* Viền đẹp */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hiệu ứng khi hover */
+}
+
+.avatar:hover {
+    transform: scale(1.1); /* Phóng to nhẹ khi hover */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Đổ bóng nổi bật hơn */
+}

@@ -1,39 +1,39 @@
 const mongoose = require("mongoose");
-const userSchema = new mongoose.Schema(
+
+const orderSchema = new mongoose.Schema(
   {
     orderItems: [
       {
-        name: { type: String, require: true },
-        amount: { type: Number, require: true },
-        image: { type: String, require: true },
-        price: { type: Number, require: true },
+        name: { type: String, required: true }, // Sửa `require` thành `required`
+        amount: { type: Number, required: true },
+        image: { type: String, required: true },
+        price: { type: Number, required: true },
         product: {
           type: mongoose.Schema.Types.ObjectId,
           ref: "Product",
-          require: true,
+          required: true,
         },
       },
     ],
     shippingAddress: {
-      fullName: { type: String, require: true },
-      address: { type: String, require: true },
-      city: { type: String, require: true },
-      phone: { type: Number, require: true },
+      name: { type: String, required: true },
+      address: { type: String, required: true },
+      phone: { type: Number, required: true },
     },
-    paymentMethod: { type: String, require: true },
-    itemsPrice: { type: Number, require: true },
-    shippingPrice: { type: Number, require: true },
-    taxPrice: { type: Number, require: true },
-    totalPrice: { type: Number, require: true },
-    user: { type: mongoose.Schema.Types.ObjectId, ref: "User", require: true },
-    idPaid: { type: Boolean, default: false },
+    paymentMethod: { type: String, default: false },
+    itemsPrice: { type: Number, required: true },
+    shippingPrice: { type: Number, required: false },
+    totalPrice: { type: Number, required: true },
+    user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: false },
+    isPaid: { type: Boolean, default: false }, // Sửa `idPaid` thành `isPaid` để nhất quán
     paidAt: { type: Date },
     isDelivered: { type: Boolean, default: false },
-    delivereAt: { type: Date },
+    deliveredAt: { type: Date }, // Sửa `delivereAt` thành `deliveredAt` để chính xác
   },
   {
-    timestamps: true,
+    timestamps: true, // Tự động thêm `createdAt` và `updatedAt`
   }
 );
-const User = mongoose.model("Order", userSchema);
-module.exports = User;
+
+const Order = mongoose.model("Order", orderSchema); // Đổi tên `User` thành `Order`
+module.exports = Order;

@@ -1,9 +1,8 @@
 import React from 'react';
-import { DefaultLayout } from '~/compoents/Layouts';
+import { DefaultLayout } from '~/components/Layouts';
+
 function HomePage() {
-    return <DefaultLayout>
-        
-    </DefaultLayout>
+    return <DefaultLayout></DefaultLayout>;
 }
 
 export default HomePage;

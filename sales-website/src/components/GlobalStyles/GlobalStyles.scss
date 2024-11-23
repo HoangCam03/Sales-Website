@@ -1,0 +1,114 @@
+@import 'normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet');
+@import url('https://fonts.googleapis.com');
+@import url('https://fonts.gstatic.com');
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+:root {
+    //default layout;
+    --default-layout-height: 88px;
+    --default-layout-width: 1150px;
+    --black: #000;
+    --text-color: rgb(120, 120, 120);
+    --cost-color: rgb(255, 66, 78);
+    --primary: #fe2c55;
+    --white: rgb(167, 216, 221);
+    --background: #f5f5fa;
+    --blue: #7c7eea;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 1.6rem;
+}
+
+button,
+input,
+[tabindex] {
+    outline: none;
+    border: none;
+}
+a[href] {
+    color: var(--blue);
+    text-decoration: none;
+    cursor: pointer;
+}
+.slick-slide img {
+    width: 98%;
+    display: block;
+}
+:where(.css-dev-only-do-not-override-apn68).ant-menu-inline .ant-menu-sub.ant-menu-inline .ant-menu-item-group-title {
+    padding: 0;
+}
+:where(.css-dev-only-do-not-override-apn68).ant-menu-light.ant-menu-root.ant-menu-vertical {
+    border-inline-end: none;
+}
+
+:where(.css-dev-only-do-not-override-apn68).ant-menu-light > .ant-menu.ant-menu-root.ant-menu-vertical {
+    border-inline-end: none;
+}
+:where(.css-dev-only-do-not-override-apn68).ant-form-item .ant-form-item-label > label {
+    flex: self-start;
+    position: relative;
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+    height: 32px;
+    color: rgba(0, 0, 0, 0.88);
+    font-size: 14px;
+    /* gap: 13px; */
+    margin-right: 40px;
+}
+.ant-btn.css-dev-only-do-not-override-apn68.ant-btn-default.ant-btn-color-default.ant-btn-variant-outlined {
+    color: #f00030;
+}
+:where(.css-dev-only-do-not-override-apn68).ant-input-number .ant-input-number-input {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 4px 11px;
+    color: rgba(0, 0, 0, 0.88);
+    font-size: inherit;
+    line-height: 1.5714285714285714;
+    list-style: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    width: 100%;
+    text-align: start;
+    background-color: transparent;
+    border: 0;
+    border-radius: 6px;
+    outline: 0;
+    transition: all 0.2s linear;
+    appearance: textfield;
+    text-align: center;
+}
+:where(.css-dev-only-do-not-override-apn68).ant-image-preview-root .ant-image-preview-img-wrapper > * {
+    pointer-events: auto;
+    width: 100%;
+    max-width: 368px; /* Đảm bảo ảnh không vượt quá kích thước tối đa */
+    height: auto; /* Tự động điều chỉnh chiều cao để giữ nguyên tỉ lệ */
+    border-radius: 10px; /* Làm tròn góc */
+    border: 1px solid var(--background);
+    object-fit: cover; /* Đảm bảo ảnh lấp đầy vùng chứa */
+}
+:where(.css-dev-only-do-not-override-apn68).ant-image .ant-image-mask .ant-image-mask-info {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 0 4px;
+    display: none;
+}
+:where(.css-dev-only-do-not-override-apn68).ant-image .ant-image-img {
+    /* border-radius: 139px; */
+    width: 100%;
+    height: 368px;
+    vertical-align: middle;
+    border-radius: 8px;
+}

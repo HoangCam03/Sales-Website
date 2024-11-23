@@ -1,0 +1,201 @@
+.wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.Modal-up {
+    position: fixed;
+    inset: 0px;
+    background: rgba(0, 0, 0, 0.53);
+    overflow-y: scroll;
+    z-index: 1000;
+}
+
+.ReactModal-Content {
+    position: relative;
+    border: none;
+    background: #fff;
+    overflow: unset;
+    border-radius: 20px;
+    outline: none;
+    padding: 0;
+    width: 800px;
+    margin: 66px auto;
+}
+
+.Style-Content {
+    background: #f8f8f8;
+    display: flex;
+    width: 100%;
+    border-radius: 20px;
+    position: relative;
+}
+
+.close-img {
+    position: absolute;
+    right: -8px;
+    top: -8px;
+    width: 42px;
+    height: 42px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.Styles-Left {
+    width: 500px;
+    padding: 40px 45px 24px;
+    background: #fff;
+    border-radius: 20px 0 0 20px;
+}
+
+.SignUp-Header {
+    margin-bottom: 20px;
+}
+
+.SignUp-Header h4 {
+    margin: 0 0 10px;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.SignUp-Header p {
+    margin: 0;
+    font-size: 15px;
+}
+
+.input {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1;
+}
+
+.input::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+.input {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Giảm khoảng cách giữa các input */
+    z-index: 1;
+}
+
+.input input,
+.input-password {
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    font-size: 24px;
+    color: #242424;
+    outline: none;
+}
+
+.style-btn {
+    margin: 30px 0 10px;
+    border-radius: 4px;
+    background: #ff424e;
+    padding: 13px 0;
+    width: 100%;
+    color: #fff;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.SignUp-with-email {
+    margin: 10px 0 0;
+    text-align: center;
+    color: #0d5cb6;
+    cursor: pointer;
+}
+
+.social-heading {
+    margin: 0 0 15px;
+    position: relative;
+    text-align: center;
+}
+
+.social-heading::before {
+    content: '';
+    width: 100%;
+    height: 1px;
+    background: #f2f2f2;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.social-heading span {
+    font-size: 15px;
+    color: #787878;
+    display: inline-block;
+    background: #fff;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.social__items {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 10px 0;
+    list-style: none;
+}
+
+.social__item img {
+    width: 58px;
+}
+
+.styles-Right {
+    background: linear-gradient(136deg, #f0f8ff -1%, #dbeeff 85%);
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 0 20px 20px 0;
+    gap: 40px;
+}
+
+.style-avt-SignUp {
+    width: 203px;
+}
+
+.content {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.content h4 {
+    margin: 0 0 5px;
+    color: #0b74e5;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.content span {
+    font-size: 13px;
+    color: #0b74e5;
+    font-weight: 500;
+}
+
+.SignUp-Header a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.SignUp-Header a:hover {
+    color: #0056b2;
+    text-decoration: underline;
+}

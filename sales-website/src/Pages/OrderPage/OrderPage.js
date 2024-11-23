@@ -1,5 +1,5 @@
 import React from 'react';
-import ListProducts from '~/compoents/Layouts/ListProducts';
+import ListProducts from '~/components/Layouts/ListProducts';
 function OrderPage() {
     return <ListProducts></ListProducts>;
 }

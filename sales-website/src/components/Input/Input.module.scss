@@ -1,0 +1,28 @@
+.input-wrapper {
+    margin-bottom: 16px;
+
+    .label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        transition: border-color 0.3s;
+
+        &:focus {
+            border-color: #007bff; // Màu khi input được focus
+            outline: none; // Ẩn outline mặc định
+        }
+
+        &::placeholder {
+            color: #aaa; // Màu chữ placeholder
+        }
+    }
+}

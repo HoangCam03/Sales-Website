@@ -1,0 +1,28 @@
+.Fn-header {
+    display: flex;
+    height: 40px;
+    padding-left: 24px;
+    margin-left: 24px;
+}
+.Fn-home,
+.fn-infor-user {
+    position: relative;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(128, 128, 137) !important;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 300;
+    white-space: nowrap;
+}
+.fn-infor-user {
+    color: rgb(56, 56, 61) !important;
+    cursor: default;
+    overflow: hidden;
+}
+.icon-icon-next {
+    line-height: 36px;
+}
