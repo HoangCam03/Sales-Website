@@ -43,13 +43,13 @@ function OrderContent() {
         navigate(`/pay/${id}`, { state: { order } });
     };
 
-    // const onKeyDown = (e) => {
-    //     if (e.key === 'Enter') {
-    //     } else if (e.key === 'Delete' || e.key === 'Backspace') {
-    //         if (search === '') {
-    //         }
-    //     }
-    // };
+    const onKeyDown = (e) => {
+        if (e.key === 'Enter') {
+        } else if (e.key === 'Delete' || e.key === 'Backspace') {
+            if (search === '') {
+            }
+        }
+    };
 
     const handleCancel = () => {
         setIsModalDeleteOpen(false);
