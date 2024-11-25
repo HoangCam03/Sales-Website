@@ -419,7 +419,7 @@ function FnUserContent() {
                 </Form>
             </Drawer>
             <Modal title="Xóa sản phẩm" open={isModalDeleteOpen} onCancel={handleCancel} onOk={handleDeleteOk}>
-                <div className={cx('modal-form')}>Bạn có chắc muốn xóa sản phẩm này không?</div>
+                <div className={cx('modal-form')}>Bạn có chắc muốn xóa Tài Khoản này không?</div>
             </Modal>
         </div>
     );

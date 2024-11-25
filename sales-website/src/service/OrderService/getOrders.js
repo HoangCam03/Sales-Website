@@ -23,20 +23,8 @@ export const getOrders = async (id) => {
 
         // Kiểm tra và xử lý dữ liệu
         if (res.data && res.data.status === 'OK') {
-            const userData = res.data.data;
-            console.log('User data received:', userData);
-
-            // Đảm bảo isAdmin được truyền đúng
-            const processedData = {
-                ...userData,
-                isAdmin: Boolean(userData.isAdmin), // Chuyển đổi sang boolean
-            };
-
-            console.log('Processed user data:', processedData);
-            return {
-                status: 'OK',
-                data: processedData,
-            };
+            const orderData = res.data.data;
+            console.log('User data received:', orderData);
         }
 
         return res.data;

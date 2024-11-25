@@ -8,7 +8,7 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
-function OrderInfor({ userName, phone, address, provisionalPrice, handlePayment, isPaymentEnabled }) {
+function OrderInfor({ userName, phone, address, totalPrice, discount, handlePayment, isPaymentEnabled }) {
     return (
         <aside className={cx('wrapper')}>
             <div className={cx('Section__Container')}>
@@ -52,15 +52,11 @@ function OrderInfor({ userName, phone, address, provisionalPrice, handlePayment,
                 <div className={cx('order-information')}>
                     <div className={cx('list-container')}>
                         <div className={cx('summary-lable')}>Tổng Tiền Hàng</div>
-                        <div className={cx('summary-value')}>{provisionalPrice}</div>
-                    </div>
-                    <div className={cx('list-container')}>
-                        <div className={cx('summary-lable')}>Phí Vận Chuyển</div>
-                        <div className={cx('summary-value')}>25000đ</div>
+                        <div className={cx('summary-value')}>{(totalPrice + discount).toLocaleString()}₫</div>
                     </div>
                     <div className={cx('list-container')}>
                         <div className={cx('summary-lable')}>Giảm giá trực tiếp</div>
-                        <div className={cx('summary-value', 'text-green')}>-77000đ</div>
+                        <div className={cx('summary-value', 'text-green')}>-{discount.toLocaleString()}₫</div>
                     </div>
 
                     <div className={cx('grid')}></div>
@@ -68,8 +64,8 @@ function OrderInfor({ userName, phone, address, provisionalPrice, handlePayment,
                     <div className={cx('order-total')}>
                         <div className={cx('order-total__label')}>Tổng tiền thanh toán</div>
                         <div className={cx('order-total__value')}>
-                            <div className={cx('order-total__total')}>{provisionalPrice.toLocaleString()}₫</div>
-                            <div className={cx('order-total__saving')}>Tiết kiệm 77.000 ₫</div>
+                            <div className={cx('order-total__total')}>{totalPrice.toLocaleString()}₫</div>
+                            <div className={cx('order-total__saving')}>Tiết kiệm {discount.toLocaleString()}₫</div>
                         </div>
                     </div>
                     <div className={cx('Vat', 'bSkntM')}>

@@ -1,4 +1,5 @@
 import { UPDATE, LOGOUT, RESTORE, UPDATE_INFO, SET_SEARCH_QUERY } from './types';
+import { SET_ORDER, CLEAR_ORDER, SET_ORDERS, UPDATE_ORDER_STATUS } from './types';
 
 // actions.js///ban đầu đang không có gì
 export const updateUser = (_id, name, email, access_token, phone, confirmPassword, address, avatar, isAdmin) => {
@@ -45,4 +46,25 @@ export const UpdateUserInfo = (userData) => {
 export const setSearchQuery = (query) => ({
     type: SET_SEARCH_QUERY,
     payload: query,
+});
+
+// actions.js
+
+export const setOrder = (order) => ({
+    type: SET_ORDER,
+    payload: order,
+});
+
+export const clearOrder = () => ({
+    type: CLEAR_ORDER,
+});
+
+export const setOrders = (orders) => ({
+    type: SET_ORDERS,
+    payload: orders,
+});
+
+export const updateOrderStatus = (id, status) => ({
+    type: UPDATE_ORDER_STATUS,
+    payload: { id, status },
 });

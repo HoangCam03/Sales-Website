@@ -84,7 +84,37 @@ const getOrderOfUser = (userId) => {
 };
 
 
+
+const deleteOrder = (orderId) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      // Tìm và xóa đơn hàng
+      const deletedOrder = await Order.findByIdAndDelete(orderId);
+
+      if (!deletedOrder) {
+        return resolve({
+          status: "ERR",
+          message: "Order not found",
+        });
+      }
+
+      resolve({
+        status: "OK",
+        message: "Order deleted successfully",
+        data: deletedOrder,
+      });
+    } catch (error) {
+      reject({
+        status: "ERR",
+        message: "An error occurred while deleting the order",
+        error: error.message,
+      });
+    }
+  });
+};
+
 module.exports = {
   createOrder,
-  getOrderOfUser
+  getOrderOfUser,
+  deleteOrder
 };

@@ -92,7 +92,7 @@ function ProductDetails() {
 
             // Lưu trạng thái đơn hàng vào sessionStorage
             sessionStorage.setItem('isOrderConfirmed', 'true');
-            navigate(`/pay/${id}`, { state: { quantity, provisionalPrice } });
+            navigate(`/pay/${id}`, { state: { quantity, totalPrice } });
         } catch (error) {
             console.error('Order creation failed:', error);
         } finally {

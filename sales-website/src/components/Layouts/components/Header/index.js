@@ -27,7 +27,7 @@ function Header() {
     const [productTypes, setProductTypes] = useState([]); // State để lưu trữ loại sản phẩm
     const user = useSelector((state) => state.userSlide); // Lấy thông tin người dùng từ Redux store
 
-    const { name, isLoggedIn, isAdmin } = user; // Lấy thông tin trực tiếp từ user
+    const { name, isLoggedIn, isAdmin, _id } = user; // Lấy thông tin trực tiếp từ user
     console.log('user==>', user);
 
     console.log('User  Info in Header:', { name, isLoggedIn, isAdmin });
@@ -98,7 +98,7 @@ function Header() {
         {
             key: 'order',
             label: 'Đơn Hàng',
-            onClick: () => navigate('/order'),
+            onClick: () => navigate(`/order/${_id}`),
         },
         {
             key: 'logout',

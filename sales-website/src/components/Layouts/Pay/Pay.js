@@ -2,7 +2,6 @@ import classNames from 'classnames/bind';
 import styles from './Pay.module.scss';
 import HeaderOnly from '../HeaderOnly';
 import OrderInfor from './OrderInfor';
-
 import SidebarPayMentMethod from './SidebarPayMentMethod';
 import Top from './Top';
 import { useLocation, useParams, useNavigate } from 'react-router';
@@ -16,12 +15,29 @@ const cx = classNames.bind(styles);
 function Pay() {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
+    const { state } = useLocation();
+    console.log('state', state);
+
+    const order = state?.order; // Lấy thông tin đơn hàng từ state
+    console.log('order: ', order);
+
     const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null); // Theo dõi phương thức thanh toán
     const location = useLocation();
     const navigate = useNavigate();
-    const { provisionalPrice } = location.state || { quantity: 1, provisionalPrice: 0 };
+    const { totalPrice } = location.state || { quantity: 1, totalPrice: 0 };
+    console.log('Giá tiền bên tạo sản phẩm', totalPrice);
+
     const user = useSelector((state) => state.userSlide);
     const { address, phone, name: userName } = user;
+
+    const price = order?.totalPrice || state?.totalPrice || 0;
+    // const shippingFee = order?.shippingPrice || state?.shippingPrice || 0;
+
+    // Kiểm tra nếu hôm nay là thứ Hai
+    const today = new Date();
+    const isMonday = today.getDay() === 1;
+    const discount = isMonday ? 77000 : 0;
+    const finalPrice = price - discount;
 
     useEffect(() => {
         const fetchProductDetails = async () => {
@@ -66,7 +82,7 @@ function Pay() {
                     name: product.data.name,
                     phone: phone,
                     address: address,
-                    provisionalPrice: provisionalPrice,
+                    provisionalPrice: finalPrice,
                     paymentMethod: selectedPaymentMethod,
                 });
                 const { data } = response;
@@ -86,9 +102,6 @@ function Pay() {
     if (!product) {
         return <div>Loading...</div>;
     }
-
-    // const { image } = product.data;
-    // const images = Array.isArray(image) ? image : [image];
 
     return (
         <div className={cx('wrapper')}>
@@ -111,7 +124,8 @@ function Pay() {
                         userName={userName}
                         phone={phone}
                         address={address}
-                        provisionalPrice={provisionalPrice}
+                        totalPrice={finalPrice}
+                        discount={discount}
                         handlePayment={handlePayment}
                         isPaymentEnabled={!!selectedPaymentMethod} // Kiểm tra xem phương thức thanh toán đã được chọn chưa
                     />

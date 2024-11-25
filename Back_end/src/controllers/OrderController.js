@@ -63,7 +63,25 @@ const getOrderOfUser = async (req, res) => {
   }
 };
 
+const deleteOrder = async (req, res) => {
+  try {
+    const orderId = req.params.id;
+    if (!orderId) {
+      return res.status(400).json({
+        status: 'ERR',
+        message: 'The orderId is required'
+      });
+    }
+    const response = await OrderService.deleteOrder(orderId);
+    return res.status(200).json(response); // Trả về kết quả khi thành công
+  } catch (error) {
+    console.error(error); // Log lỗi để debug
+    return res.status(400).json({ message: error.message }); // Trả về lỗi
+  }
+};
+
 module.exports = {
   createOrder,
-  getOrderOfUser
+  getOrderOfUser,
+  deleteOrder
 };

@@ -25,7 +25,7 @@ const publicRoutes = [
     { path: '/sign-in', layout: SignIn },
     { path: '/sign-up', layout: SignUp },
     { path: '/profile-user', layout: ProfileUsers },
-    { path: '/order', component: Order, layout: Order },
+    { path: '/order/:id', component: Order, layout: Order },
 
     { path: '/pay/:id', layout: Pay },
 
