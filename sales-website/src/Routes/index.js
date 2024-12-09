@@ -16,6 +16,7 @@ import AdminProducts from '~/components/Layouts/AdminProducts';
 import ProductDetails from '~/components/Layouts/ProductDetails';
 import Pay from '~/components/Layouts/Pay/Pay';
 import Order from '~/components/Order';
+import CartShopping from '~/components/CartShopping';
 
 const publicRoutes = [
     { path: '/', component: HomePage, layout: DefaultLayout },
@@ -26,6 +27,7 @@ const publicRoutes = [
     { path: '/sign-up', layout: SignUp },
     { path: '/profile-user', layout: ProfileUsers },
     { path: '/order/:id', component: Order, layout: Order },
+    { path: '/shopping-cart/:id', component: CartShopping, layout: CartShopping },
 
     { path: '/pay/:id', layout: Pay },
 

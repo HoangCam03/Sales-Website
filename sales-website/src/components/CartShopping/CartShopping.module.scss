@@ -1,0 +1,181 @@
+.wrapper {
+    background-color: var(--background, #f5f5fa);
+}
+
+.body {
+    width: 100%;
+    height: 100%;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.wrapper-Header-Body {
+    width: 100%;
+    margin-bottom: 12px;
+}
+.header-Body {
+    margin: 5px;
+    width: 80px;
+    height: 100%;
+}
+.content {
+    display: flex;
+    flex-wrap: nowrap;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+.left-content {
+    flex: 1 1 0%;
+    width: calc(100% - 380px);
+    margin-right: 20px;
+    max-height: 600px; /* Đặt chiều cao cố định cho phần chứa sản phẩm */
+    overflow-y: hidden; /* Ban đầu ẩn thanh cuộn dọc */
+}
+.upper-bar {
+    display: grid;
+    grid-template-columns: auto 180px 120px 120px 20px;
+    column-gap: 24px;
+    gap: 40px;
+    width: 100%;
+    padding: 8px 16px;
+    border-radius: 4px;
+    background: rgb(255, 255, 255);
+    color: rgb(36, 36, 36);
+    font-weight: 400;
+    font-size: 13px;
+    margin-bottom: 12px;
+    position: sticky;
+    top: 20px;
+    z-index: 99;
+    -webkit-box-align: center;
+    align-items: center;
+}
+.chckall {
+    font-size: 14px;
+    line-height: 20px;
+    color: rgb(56, 56, 61);
+}
+.checkbox {
+    display: flex;
+}
+.dl {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    border-radius: 4px;
+    background: rgb(255, 255, 255);
+    color: rgb(36, 36, 36);
+    z-index: 2;
+    text-align: right;
+    width: 17px;
+    height: 17px;
+}
+.font {
+    color: #787878;
+}
+.row {
+    display: grid;
+    grid-template-columns: auto 180px 120px 120px 20px;
+    column-gap: 24px;
+    gap: 40px;
+    width: 100%;
+    padding: 8px 16px;
+    border-radius: 4px;
+    background: rgb(255, 255, 255);
+    color: rgb(36, 36, 36);
+    font-weight: 400;
+    font-size: 13px;
+    margin-bottom: 12px;
+    position: sticky;
+    top: 20px;
+    z-index: 99;
+    -webkit-box-align: center;
+    align-items: center;
+}
+.title-img-check {
+    display: grid;
+    grid-template-columns: 18px 80px 1fr;
+    column-gap: 12px;
+    -webkit-box-align: center;
+    align-items: center;
+}
+.imgProduct {
+    width: 80px;
+    height: 80px;
+    overflow: hidden; /* Ẩn phần ảnh bị tràn */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover; /* Đảm bảo ảnh được cắt vừa khung chứa */
+}
+.Headline {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 150%;
+    color: rgb(39, 39, 42);
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.method-logo {
+    margin-right: 4px;
+    object-fit: contain;
+}
+.price {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.first-price,
+.total-price {
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 600;
+    color: rgb(255, 66, 78);
+}
+.sup {
+    font-size: 15px;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+.discount-price {
+    font-size: 12px;
+    line-height: 18px;
+    color: rgb(128, 128, 137);
+    text-decoration: line-through;
+    font-weight: 400;
+    margin-left: 4px;
+}
+.right-content {
+    margin-top: 20px;
+    max-height: 600px; /* Đặt chiều cao cố định cho phần chứa sản phẩm */
+    overflow-y: hidden; /* Ban đầu ẩn thanh cuộn dọc */
+}
+.infor {
+    width: 320px;
+}
+
+/* SCSS for hover effects */
+.left-content:hover {
+    overflow-y: auto;
+}
+
+.left-content:hover ~ .right-content {
+    overflow-y: hidden;
+}
+
+.right-content:hover {
+    overflow-y: auto;
+}
+
+.right-content:hover ~ .left-content {
+    overflow-y: hidden;
+}

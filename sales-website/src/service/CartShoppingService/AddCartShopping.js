@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-export const createOrder = async (data) => {
+export const addCartShopping = async (data) => {
     const token = localStorage.getItem('access_token');
     console.log('Token:', token); // Log token để kiểm tra
 
     try {
-        const url = `${process.env.REACT_APP_API_URL}/order-product/create`;
+        const url = `${process.env.REACT_APP_API_URL}/cart-shopping/add-cartshopping`;
         console.log('API URL:', url); // Log URL API
         console.log('data:', data);
         const res = await axios.post(url, data, {

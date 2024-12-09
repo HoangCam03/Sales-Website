@@ -8,3 +8,5 @@ export const SET_ORDER = 'SET_ORDER';
 export const CLEAR_ORDER = 'CLEAR_ORDER';
 export const SET_ORDERS = 'SET_ORDERS';
 export const UPDATE_ORDER_STATUS = 'UPDATE_ORDER_STATUS';
+
+export const SET_CARTSHOPPING = 'SET_CARTSHOPPING';

@@ -3,11 +3,12 @@ import styles from './ContentDetailProduct.module.scss';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+import LikeButton from '~/components/LikeButton';
 
 const cx = classNames.bind(styles);
 
 function ContentDetailProduct(props) {
-    const { name, price, rating, discount, sold } = props;
+    const { name, price, countInStock, rating, discount, sold } = props;
 
     return (
         <div className={cx('content')}>
@@ -27,6 +28,10 @@ function ContentDetailProduct(props) {
                     (800)
                     <span>|</span>
                     <span className={cx('quantity-Sold')}> đã bán {sold}+</span>
+                    <span>|</span>
+                    <span className={cx('quantity-Sold')}>
+                        {countInStock <= 0 ? 'Hết hàng...' : `${countInStock} sản phẩm có sẵn`}
+                    </span>
                 </div>
             </div>
             <div className={cx('price-Product')}>
@@ -38,6 +43,7 @@ function ContentDetailProduct(props) {
                     {Math.round(price / (1 - discount / 100)).toLocaleString()} <span className={cx('sup')}>đ</span>
                 </div>
             </div>
+            <LikeButton dataHref={'https://developers.facebook.com/docs/plugins/'}></LikeButton>
         </div>
     );
 }

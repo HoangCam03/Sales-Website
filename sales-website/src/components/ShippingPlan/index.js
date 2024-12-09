@@ -3,6 +3,7 @@ import classNames from 'classnames/bind';
 import styles from './ShippingPlan.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTicket, faTruckFast } from '@fortawesome/free-solid-svg-icons';
+import { useLocation } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -12,6 +13,8 @@ function ShippingPlan(props) {
     const [selectedMethod, setSelectedMethod] = useState(null); // Khởi tạo với giá trị null
     const [shippingFee, setShippingFee] = useState(0);
     const [deliveryTime, setDeliveryTime] = useState('');
+
+    const location = useLocation(); // Lấy đường dẫn hiện tại
 
     const calculateDeliveryTime = (hours) => {
         const now = new Date();
@@ -55,6 +58,8 @@ function ShippingPlan(props) {
             onShippingChange(shippingFee);
         }
     }, [shippingFee, onShippingChange, selectedMethod]);
+
+    const isProductDetailsPage = location.pathname.includes('product-details'); // Kiểm tra đường dẫn hiện tại
 
     return (
         <aside className={cx('wrapper')}>
@@ -117,73 +122,79 @@ function ShippingPlan(props) {
                 </div>
 
                 {/* Package Details */}
-                <div className={cx('shipping-details')}>
-                    <div className={cx('shipping-package')}>
-                        <div className={cx('package-title')}>
-                            <img
-                                width="24"
-                                height="24"
-                                alt="icon"
-                                src="https://salt.tikicdn.com/ts/upload/ad/b7/93/7094a85d0b6d299f30ed89b03511deb9.png"
-                            />
-                            Gói:
-                            {selectedMethod === '1' ? deliveryTime : 'Giao tiết kiệm, nhận hàng sau 3-5 ngày'}
-                        </div>
-                        {/* Left content */}
-                        <div className={cx('left-content')}>
-                            <div className={cx('package-summary')}>
-                                <div className={cx('delivery-method')}>
-                                    <img
-                                        className={cx('method-logo')}
-                                        alt="delivery-method-icon"
-                                        width="32"
-                                        height="16"
-                                        src="https://salt.tikicdn.com/ts/tka/a8/31/b6/802e2c99dcce64c67aa2648edb15dd25.png"
-                                    />
-                                    <span className={cx('method-text')} style={{ lineHeight: '16px' }}>
-                                        {selectedMethod === '1' ? 'Giao siêu tốc 2h' : 'Giao tiết kiệm'}
-                                    </span>
-                                </div>
-                                <div className={cx('ShippingFeeShippingFee', 'XUTGR')}>
-                                    <span className={cx('original-fee')}>
-                                        {selectedMethod === '1' ? '25000 ₫' : '10000 ₫'}
-                                    </span>
-                                    <span className={cx('current-fee')}>{shippingFee.toLocaleString()} ₫</span>
-                                    <img
-                                        className={cx('info-icon')}
-                                        src="https://salt.tikicdn.com/ts/ta/0f/a3/a2/962b12a6d4c8425cefcffdee06d294ad.png"
-                                        alt="info"
-                                        aria-describedby="popup-4"
-                                        style={{ width: '14px', height: '14px' }}
-                                    />
-                                </div>
+                {isProductDetailsPage && (
+                    <div className={cx('shipping-details')}>
+                        <div className={cx('shipping-package')}>
+                            <div className={cx('package-title')}>
+                                <img
+                                    width="24"
+                                    height="24"
+                                    alt="icon"
+                                    src="https://salt.tikicdn.com/ts/upload/ad/b7/93/7094a85d0b6d299f30ed89b03511deb9.png"
+                                />
+                                Gói:
+                                {selectedMethod === '1' ? deliveryTime : 'Giao tiết kiệm, nhận hàng sau 3-5 ngày'}
                             </div>
+                            {/* Left content */}
+                            <div className={cx('left-content')}>
+                                <div className={cx('package-summary')}>
+                                    <div className={cx('delivery-method')}>
+                                        <img
+                                            className={cx('method-logo')}
+                                            alt="delivery-method-icon"
+                                            width="32"
+                                            height="16"
+                                            src="https://salt.tikicdn.com/ts/tka/a8/31/b6/802e2c99dcce64c67aa2648edb15dd25.png"
+                                        />
+                                        <span className={cx('method-text')} style={{ lineHeight: '16px' }}>
+                                            {selectedMethod === '1' ? 'Giao siêu tốc 2h' : 'Giao tiết kiệm'}
+                                        </span>
+                                    </div>
+                                    <div className={cx('ShippingFeeShippingFee', 'XUTGR')}>
+                                        <span className={cx('original-fee')}>
+                                            {selectedMethod === '1' ? '25000 ₫' : '10000 ₫'}
+                                        </span>
+                                        <span className={cx('current-fee')}>
+                                            {shippingFee ? shippingFee.toLocaleString() : '0'} ₫
+                                        </span>
+                                        <img
+                                            className={cx('info-icon')}
+                                            src="https://salt.tikicdn.com/ts/ta/0f/a3/a2/962b12a6d4c8425cefcffdee06d294ad.png"
+                                            alt="info"
+                                            aria-describedby="popup-4"
+                                            style={{ width: '14px', height: '14px' }}
+                                        />
+                                    </div>
+                                </div>
 
-                            <div className={cx('package-item-list')}>
-                                <div>
-                                    <div className={cx('PackageItem')}>
-                                        <div className={cx('item-icon')}>
-                                            <img src={image} alt="Product" />
-                                        </div>
-                                        <div className={cx('item-info')}>
-                                            <div className={cx('item-info__first-line')}>
-                                                <span className={cx('item-info__product-name')} title={name}>
-                                                    {name}
-                                                </span>
+                                <div className={cx('package-item-list')}>
+                                    <div>
+                                        <div className={cx('PackageItem')}>
+                                            <div className={cx('item-icon')}>
+                                                <img src={image} alt="Product" />
                                             </div>
-                                            <div className={cx('item-info__second-line')}>
-                                                <div className={cx('item-info__qty')}>SL: x{quantity}</div>
-                                                <div>
-                                                    <div className={cx('item-info-price')}>
-                                                        <span className={cx('item-info__original-price')}>
-                                                            {Math.round(
-                                                                (price / (1 - discount / 100)) * quantity,
-                                                            ).toLocaleString()}
-                                                            ₫
-                                                        </span>
-                                                        <span className={cx('item-info__price-sale')}>
-                                                            {totalPrice.toLocaleString()}₫
-                                                        </span>
+                                            <div className={cx('item-info')}>
+                                                <div className={cx('item-info__first-line')}>
+                                                    <span className={cx('item-info__product-name')} title={name}>
+                                                        {name}
+                                                    </span>
+                                                </div>
+                                                <div className={cx('item-info__second-line')}>
+                                                    <div className={cx('item-info__qty')}>SL: x{quantity}</div>
+                                                    <div>
+                                                        <div className={cx('item-info-price')}>
+                                                            <span className={cx('item-info__original-price')}>
+                                                                {price && discount
+                                                                    ? Math.round(
+                                                                          (price / (1 - discount / 100)) * quantity,
+                                                                      ).toLocaleString()
+                                                                    : '0'}
+                                                                ₫
+                                                            </span>
+                                                            <span className={cx('item-info__price-sale')}>
+                                                                {totalPrice ? totalPrice.toLocaleString() : '0'}₫
+                                                            </span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -191,29 +202,29 @@ function ShippingPlan(props) {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className={cx('right-content')}>
-                            <div className={cx('Fulfillmentstyles', 'isrDZd')}>
-                                <svg className={cx('fulfillment-icon')}>
-                                    <FontAwesomeIcon icon={faTruckFast}></FontAwesomeIcon>
-                                </svg>
+                            <div className={cx('right-content')}>
+                                <div className={cx('Fulfillmentstyles', 'isrDZd')}>
+                                    <svg className={cx('fulfillment-icon')}>
+                                        <FontAwesomeIcon icon={faTruckFast}></FontAwesomeIcon>
+                                    </svg>
 
-                                <p className={cx('fulfillment-text')}>
-                                    Được giao bởi CMAI Smart Logistics (giao từ Hà Nội)
-                                </p>
-                                <p className={cx('fulfillment-text--warning')}></p>
+                                    <p className={cx('fulfillment-text')}>
+                                        Được giao bởi CMAI Smart Logistics (giao từ Hà Nội)
+                                    </p>
+                                    <p className={cx('fulfillment-text--warning')}></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={cx('seller-coupons-heading')}>
+                            <div className={cx('sellerCouponsHeading')}>
+                                <svg className={cx('couponIcon')}>
+                                    <FontAwesomeIcon icon={faTicket}> </FontAwesomeIcon>
+                                </svg>
+                                <span className={cx('seller-coupons-heading__title')}>Mã giảm giá của người bán</span>
                             </div>
                         </div>
                     </div>
-                    <div className={cx('seller-coupons-heading')}>
-                        <div className={cx('sellerCouponsHeading')}>
-                            <svg className={cx('couponIcon')}>
-                                <FontAwesomeIcon icon={faTicket}> </FontAwesomeIcon>
-                            </svg>
-                            <span className={cx('seller-coupons-heading__title')}>Mã giảm giá của người bán</span>
-                        </div>
-                    </div>
-                </div>
+                )}
             </div>
         </aside>
     );

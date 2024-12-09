@@ -121,7 +121,7 @@ function OrderContent() {
                                 <span className={cx('status')}>
                                     {order.status === 'Đã hủy'
                                         ? 'Đã hủy'
-                                        : order.paymentMethod === true
+                                        : order.isPaid === true
                                         ? 'Đang giao hàng...'
                                         : 'Chưa thanh toán'}
                                 </span>
@@ -139,6 +139,13 @@ function OrderContent() {
                                     <div className={cx('order-details')}>
                                         <div className={cx('order-title')}>
                                             {order.orderItems[0]?.name || 'Tên sản phẩm'}
+                                            <img
+                                                className={cx('info-icon')}
+                                                src="https://salt.tikicdn.com/ts/ta/0f/a3/a2/962b12a6d4c8425cefcffdee06d294ad.png"
+                                                alt="info"
+                                                aria-describedby="popup-4"
+                                                style={{ width: '14px', height: '14px' }}
+                                            />
                                         </div>
                                         <div className={cx('order-return')}>
                                             Địa chỉ giao hàng: {order.shippingAddress?.address || 'Không xác định'}
@@ -151,7 +158,7 @@ function OrderContent() {
                                     Tổng tiền: <strong>{order.totalPrice.toLocaleString() || '0'}₫</strong>
                                 </div>
                                 <div className={cx('actions')}>
-                                    {order.paymentMethod === true ? (
+                                    {order.isPaid === true ? (
                                         <Button className={cx('btn-success')} disabled>
                                             Đã Thanh Toán
                                         </Button>
@@ -166,7 +173,7 @@ function OrderContent() {
                                         onClick={() => showDeleteModal(order)}
                                         disabled={order.status === 'Đã hủy'}
                                     >
-                                        Hủy đơn hàng
+                                        {order.status === 'Đã hủy' ? 'Đơn hàng đã bị hủy' : 'Hủy đơn hàng'}
                                     </Button>
                                 </div>
                             </div>
