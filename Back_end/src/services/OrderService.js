@@ -1,5 +1,6 @@
 const Order = require("../models/OrderProduct");
 const User = require("../models/UserModel");
+const Product = require("../models/ProductModel");
 
 const createOrder = (newOrder) => {
   return new Promise(async (resolve, reject) => {
@@ -10,20 +11,49 @@ const createOrder = (newOrder) => {
       shippingPrice,
       paymentMethod,
       totalPrice,
+      isPaid,
       user,
     } = newOrder;
 
     try {
       // Kiểm tra nếu đơn hàng rỗng
       if (!orderItems || orderItems.length === 0) {
-        resolve({
+        return resolve({
           status: "Error",
           message: "No order items",
         });
-        return;
       }
 
-      // Tạo đơn hàng mới
+      // Kiểm tra và cập nhật từng sản phẩm
+      const promises = orderItems.map(async (order) => {
+        const productData = await Product.findOneAndUpdate(
+          {
+            _id: order.product,
+            countInStock: { $gte: order.amount }, // Đảm bảo sản phẩm còn đủ số lượng
+          },
+          {
+            $inc: {
+              countInStock: -order.amount, // Giảm số lượng tồn kho
+              sold: order.amount, // Tăng số lượng đã bán
+            },
+          },
+          { new: true }
+        );
+
+        if (!productData) {
+          throw new Error(  
+            `Product with ID ${order.product} is out of stock or insufficient quantity. Available: ${productData ? productData.countInStock : 0}, Required: ${order.amount}`
+          );
+        }
+
+        // Log productData chỉ để kiểm tra
+        console.log("Order was created:", productData);
+      });
+
+      // Chờ tất cả các Promise trong map hoàn thành
+      await Promise.all(promises);
+
+      // Tạo đơn hàng sau khi tất cả sản phẩm được cập nhật
       const createdOrder = await Order.create({
         orderItems,
         shippingAddress,
@@ -31,6 +61,7 @@ const createOrder = (newOrder) => {
         shippingPrice,
         totalPrice,
         paymentMethod,
+        isPaid,
         user,
       });
 
@@ -40,10 +71,14 @@ const createOrder = (newOrder) => {
         data: createdOrder,
       });
     } catch (error) {
-      reject(error);
+      reject({
+        status: "ERR",
+        message: error.message || "An error occurred while creating the order",
+      });
     }
   });
-};
+  };
+
 
 const getOrderOfUser = (userId) => {
   return new Promise(async (resolve, reject) => {
@@ -73,6 +108,7 @@ const getOrderOfUser = (userId) => {
         message: "Orders retrieved successfully",
         data: userOrders,
       });
+
     } catch (error) {
       reject({
         status: "ERR",
@@ -82,8 +118,6 @@ const getOrderOfUser = (userId) => {
     }
   });
 };
-
-
 
 const deleteOrder = (orderId) => {
   return new Promise(async (resolve, reject) => {
@@ -113,8 +147,27 @@ const deleteOrder = (orderId) => {
   });
 };
 
+
+
+const updatePaymentStatus = async (orderId, isPaid) => {
+  const updatedOrder = await Order.findByIdAndUpdate(
+    orderId,
+    { isPaid },
+    { new: true }
+  );
+
+  if (!updatedOrder) {
+    throw new Error('Order not found');
+  }
+
+  return updatedOrder;
+};
+
+
+
 module.exports = {
   createOrder,
   getOrderOfUser,
-  deleteOrder
+  deleteOrder,
+  updatePaymentStatus,
 };

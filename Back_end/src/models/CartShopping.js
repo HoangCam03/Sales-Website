@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 
-const orderSchema = new mongoose.Schema(
+const CartShoppingSchema = new mongoose.Schema(
   {
-    orderItems: [
+    CartShoppingItems: [
       {
         name: { type: String, required: true },
         amount: { type: Number, required: true },
-        image: { type: mongoose.Schema.Types.Mixed, required: true }, // Hỗ trợ cả string và array
+        image: { type: String, required: true },
         price: { type: Number, required: true },
         product: {
           type: mongoose.Schema.Types.ObjectId,
@@ -19,9 +19,9 @@ const orderSchema = new mongoose.Schema(
       name: { type: String, required: true },
       address: { type: String, required: true },
       phone: { type: Number, required: true },
-      email: { type: String, required: true }, // Loại bỏ `unique: true`
+      email: { type: String, required: true }, 
     },
-    paymentMethod: { type: String, default: false },
+  
     itemsPrice: { type: Number, required: true },
     shippingPrice: { type: Number, required: false },
     totalPrice: { type: Number, required: true },
@@ -30,8 +30,6 @@ const orderSchema = new mongoose.Schema(
       ref: "User",
       required: false,
     },
-    isPaid: { type: Boolean, default: false },
-    paidAt: { type: Date },
     isDelivered: { type: Boolean, default: false },
     deliveredAt: { type: Date },
   },
@@ -40,5 +38,5 @@ const orderSchema = new mongoose.Schema(
   }
 );
 
-const Order = mongoose.model("Order", orderSchema);
-module.exports = Order;
+const CartShopping = mongoose.model("CartShopping", CartShoppingSchema);
+module.exports = CartShopping;
