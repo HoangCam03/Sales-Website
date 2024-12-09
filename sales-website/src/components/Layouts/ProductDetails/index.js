@@ -6,7 +6,7 @@ import logoOffice from '~/assets/images/logoOffice.png';
 import logoTiki from '~/assets/images/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { Image, InputNumber } from 'antd';
+import { Image, InputNumber, message } from 'antd';
 import Button from '~/components/Button';
 import { useNavigate, useParams } from 'react-router';
 import { getDetailProduct } from '~/service/ProductService/getDetailProduct';
@@ -15,6 +15,8 @@ import AddressUser from './AddressUser';
 import { useSelector } from 'react-redux';
 import ShippingPlan from '~/components/ShippingPlan';
 import { createOrder } from '~/service/OrderService/createOrder';
+import Comment from '~/components/Comment';
+import { addCartShopping } from '~/service/CartShoppingService/AddCartShopping';
 
 const cx = classNames.bind(styles);
 
@@ -28,9 +30,14 @@ function ProductDetails() {
     const navigate = useNavigate();
 
     const user = useSelector((state) => state.userSlide);
-    const { address, phone, name: userName } = user;
+    const { address, phone, name: userName, email, _id: userId } = user;
 
     useEffect(() => {
+        // if (!isLoggedIn) {
+        //     navigate('/sign-in');
+        //     return;
+        // }
+
         const fetchProductDetails = async () => {
             try {
                 const productData = await getDetailProduct(id);
@@ -56,6 +63,39 @@ function ProductDetails() {
         };
     }, [id, navigate]);
 
+    // Khởi tạo Facebook SDK
+    useEffect(() => {
+        const initFacebookSDK = () => {
+            if (window.FB) {
+                window.FB.XFBML.parse();
+            } else {
+                window.fbAsyncInit = function () {
+                    window.FB.init({
+                        appId: '1678712749526266',
+                        autoLogAppEvents: true,
+                        xfbml: true,
+                        version: 'v21.0',
+                    });
+                    window.FB.XFBML.parse();
+                };
+
+                (function (d, s, id) {
+                    let js,
+                        fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) {
+                        return;
+                    }
+                    js = d.createElement(s);
+                    js.id = id;
+                    js.src = 'https://connect.facebook.net/vi_VN/sdk.js';
+                    fjs.parentNode.insertBefore(js, fjs);
+                })(document, 'script', 'facebook-jssdk');
+            }
+        };
+
+        initFacebookSDK();
+    }, []);
+
     const handleQuantityChange = (value) => {
         setQuantity(value);
     };
@@ -80,7 +120,9 @@ function ProductDetails() {
                 name: userName,
                 address: address,
                 phone: phone,
+                email: email,
             },
+
             itemsPrice: provisionalPrice,
             shippingPrice: shippingFee,
             totalPrice: totalPrice,
@@ -89,12 +131,52 @@ function ProductDetails() {
         try {
             const response = await createOrder(orderData);
             console.log('Order created successfully:', response);
-
+            message.success('Order created successfully!');
             // Lưu trạng thái đơn hàng vào sessionStorage
             sessionStorage.setItem('isOrderConfirmed', 'true');
             navigate(`/pay/${id}`, { state: { quantity, totalPrice } });
         } catch (error) {
             console.error('Order creation failed:', error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleCartShopping = async () => {
+        setIsLoading(true);
+        const cartShoppingData = {
+            CartShoppingItems: [
+                {
+                    name: name,
+                    amount: quantity,
+                    image: image,
+                    price: price,
+                    product: id,
+                },
+            ],
+            shippingAddress: {
+                name: userName,
+                address: address,
+                phone: phone,
+                email: email,
+            },
+
+            itemsPrice: provisionalPrice,
+            shippingPrice: shippingFee,
+            totalPrice: totalPrice,
+        };
+
+        try {
+            const response = await addCartShopping(cartShoppingData);
+            console.log('Order Added successfully:', response);
+            message.success('Order Added successfully!');
+            // Lưu trạng thái đơn hàng vào sessionStorage
+            sessionStorage.setItem('isOrderConfirmed', 'true');
+            navigate(`/shopping-cart/${userId}`, {
+                state: { quantity, totalPrice, discount, price, image },
+            });
+        } catch (error) {
+            console.error('Add Order in CartShopping failed:', error);
         } finally {
             setIsLoading(false);
         }
@@ -108,7 +190,7 @@ function ProductDetails() {
         return <div>Loading...</div>;
     }
 
-    const { name, image, rating, sold, price, discount, description } = product.data;
+    const { name, image, rating, sold, price, countInStock, discount, description } = product.data;
     const images = Array.isArray(image) ? image : [image];
     const provisionalPrice = price * quantity;
     const totalPrice = provisionalPrice + shippingFee;
@@ -146,6 +228,7 @@ function ProductDetails() {
                             <ContentDetailProduct
                                 name={name}
                                 rating={rating}
+                                countInStock={countInStock}
                                 price={price}
                                 sold={sold}
                                 discount={discount}
@@ -166,6 +249,9 @@ function ProductDetails() {
                                 setSelectedShippingMethod={setSelectedShippingMethod}
                                 onShippingChange={handleShippingChange}
                             />
+                        </div>
+                        <div className={cx('comment')}>
+                            <Comment dataHref="https://developers.facebook.com/docs/plugins/comments#configurator"></Comment>
                         </div>
                     </div>
 
@@ -205,11 +291,13 @@ function ProductDetails() {
                             <Button
                                 large
                                 onClick={handlePaymentPage}
-                                disabled={selectedShippingMethod === null || isLoading}
+                                disabled={selectedShippingMethod === null || countInStock <= 0 || isLoading}
                             >
                                 {isLoading ? 'Đang xử lý...' : 'Đặt Hàng'}
                             </Button>
-                            <Button add>Thêm vào giỏ hàng</Button>
+                            <Button add onClick={handleCartShopping} disabled={countInStock <= 0 || isLoading}>
+                                {isLoading ? 'Đang xử lý...' : 'Thêm vào giỏ hàng'}
+                            </Button>
                         </div>
                     </div>
                 </div>

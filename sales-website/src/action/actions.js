@@ -1,5 +1,6 @@
 import { UPDATE, LOGOUT, RESTORE, UPDATE_INFO, SET_SEARCH_QUERY } from './types';
 import { SET_ORDER, CLEAR_ORDER, SET_ORDERS, UPDATE_ORDER_STATUS } from './types';
+import { SET_CARTSHOPPING } from './types';
 
 // actions.js///ban đầu đang không có gì
 export const updateUser = (_id, name, email, access_token, phone, confirmPassword, address, avatar, isAdmin) => {
@@ -67,4 +68,10 @@ export const setOrders = (orders) => ({
 export const updateOrderStatus = (id, status) => ({
     type: UPDATE_ORDER_STATUS,
     payload: { id, status },
+});
+
+////
+export const setCartShopping = (cartShopping) => ({
+    type: SET_CARTSHOPPING,
+    payload: cartShopping,
 });

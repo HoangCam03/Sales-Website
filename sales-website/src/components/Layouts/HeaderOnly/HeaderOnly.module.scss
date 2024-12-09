@@ -47,6 +47,7 @@
 
 .logo {
     margin-top: 15px;
+    cursor: pointer;
 }
 
 .logo-tiki {
@@ -91,4 +92,8 @@
 .avatar:hover {
     transform: scale(1.1); /* Phóng to nhẹ khi hover */
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Đổ bóng nổi bật hơn */
+}
+.hotline-title {
+    color: pink;
+    margin: 10px;
 }

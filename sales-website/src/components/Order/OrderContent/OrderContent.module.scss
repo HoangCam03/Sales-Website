@@ -235,6 +235,12 @@
                     cursor: pointer;
                     margin-right: 10px;
                 }
+
+                .btn-cancel:disabled {
+                    cursor: not-allowed;
+                    opacity: 0.6;
+                    pointer-events: none;
+                }
                 .btn-cancel:hover {
                     color: var(--cost-color) !important;
                 }

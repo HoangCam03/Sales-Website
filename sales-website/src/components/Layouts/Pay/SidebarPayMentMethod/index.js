@@ -3,12 +3,15 @@ import classNames from 'classnames/bind';
 import styles from './SidebarPayMentMethod.module.scss';
 import FakerRadioButton from '~/components/FakerRadioButton';
 import cash from '~/assets/images/PaymentMethod/cash.png';
+import paypal from '~/assets/images/PaymentMethod/paypal.jpg';
+
 import zalo from '~/assets/images/PaymentMethod/Zalo.png';
 import viettelPay from '~/assets/images/PaymentMethod/viettel money.png';
 import momo from '~/assets/images/PaymentMethod/Momo.jpg';
 import vnpay from '~/assets/images/PaymentMethod/Vnpay.png';
 import fecredit from '~/assets/images/PaymentMethod/fe-card.png';
 import creditImg from '~/assets/images/PaymentMethod/Credit.png';
+import { PayPalButton } from 'react-paypal-button-v2';
 
 const cx = classNames.bind(styles);
 
@@ -33,6 +36,37 @@ function SidebarPayMentMethod({ setSelectedPaymentMethod }) {
                         </div>
                     </div>
                 </div>
+                <div className={cx('payment')} onClick={() => handleSelectMethod('paypal')}>
+                    <FakerRadioButton />
+                    <div className={cx('titlePayment')}>
+                        <img className={cx('method-icon', 'paypal')} src={paypal} width="32" height="32" alt="icon" />
+                        <div className={cx('method-content')}>
+                            <div className={cx('method-content__title')}>
+                                <span>PayPal</span>
+                            </div>
+                            <div className={cx('method-content__sub-title')}></div>
+                        </div>
+                    </div>
+                </div>
+                {setSelectedPaymentMethod === 'paypal' && (
+                    <div className={cx('paypal-button-container')}>
+                        <PayPalButton
+                            amount="0.01"
+                            // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
+                            onSuccess={(details, data) => {
+                                alert('Transaction completed by ' + details.payer.name.given_name);
+
+                                // OPTIONAL: Call your server to save the transaction
+                                return fetch('/paypal-transaction-complete', {
+                                    method: 'post',
+                                    body: JSON.stringify({
+                                        orderID: data.orderID,
+                                    }),
+                                });
+                            }}
+                        />
+                    </div>
+                )}
                 <div className={cx('payment')} onClick={() => handleSelectMethod('viettelPay')}>
                     <FakerRadioButton />
                     <div className={cx('titlePayment')}>

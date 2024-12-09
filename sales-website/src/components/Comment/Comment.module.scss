@@ -1,0 +1,41 @@
+.comment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem; /* Kích thước font mặc định */
+}
+
+@media (max-width: 450px) {
+    .content {
+        font-size: 0.9rem; /* Thu nhỏ font khi kích thước màn hình nhỏ hơn 1200px */
+    }
+}
+
+@media (max-width: 992px) {
+    .content {
+        font-size: 0.8rem; /* Thu nhỏ font khi kích thước màn hình nhỏ hơn 992px */
+    }
+}
+
+@media (max-width: 768px) {
+    .content {
+        font-size: 0.7rem; /* Thu nhỏ font khi kích thước màn hình nhỏ hơn 768px */
+    }
+}
+
+@media (max-width: 576px) {
+    .content {
+        font-size: 0.6rem; /* Thu nhỏ font khi kích thước màn hình nhỏ hơn 576px */
+    }
+}

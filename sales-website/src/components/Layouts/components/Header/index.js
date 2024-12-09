@@ -36,6 +36,9 @@ function Header() {
     const handleNav = () => {
         navigate('/sign-in');
     };
+    const handleCartShopping = () => {
+        navigate(`/shopping-cart/${_id}`);
+    };
 
     // Hàm đăng xuất
     const handleLogout = () => {
@@ -191,7 +194,7 @@ function Header() {
                     )}
 
                     <Badge count={4}>
-                        <Button small home={<FontAwesomeIcon icon={faCartShopping} />}>
+                        <Button small home={<FontAwesomeIcon icon={faCartShopping} />} onClick={handleCartShopping}>
                             Giỏ hàng
                         </Button>
                     </Badge>

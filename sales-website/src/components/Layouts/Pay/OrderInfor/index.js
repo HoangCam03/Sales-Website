@@ -1,14 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './OrderInfor.module.scss';
-import Button from '~/components/Button'; // Assuming you have a Button component
-import { Link } from 'react-router-dom';
+import Button from '~/components/Button'; // Giả sử bạn có component Button
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { PayPalButton } from 'react-paypal-button-v2';
+import { updateOrderStatus } from '~/service/OrderService/updateOrderStatus';
+import { Modal } from 'antd';
 
 const cx = classNames.bind(styles);
 
-function OrderInfor({ userName, phone, address, totalPrice, discount, handlePayment, isPaymentEnabled }) {
+function OrderInfor({
+    userName,
+    phone,
+    address,
+    totalPrice = 0, // Gán giá trị mặc định là 0
+    discount = 0, // Gán giá trị mặc định là 0
+    handlePayment,
+    selectedPaymentMethod,
+    isPaymentEnabled,
+    sdkReady,
+    order = {}, // Gán giá trị mặc định là một đối tượng rỗng
+}) {
+    const navigate = useNavigate();
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const onSuccessPaypal = async (details, data) => {
+        console.log('details, data:', details, data);
+
+        try {
+            const orderId = order._id; // Lấy order ID từ props
+            const status = details.status; // Lấy trạng thái từ PayPal
+
+            // Gọi API cập nhật trạng thái thanh toán
+            const response = await updateOrderStatus(orderId, status);
+            console.log('Order status updated successfully:', response);
+
+            // Hiển thị thông báo thành công
+            setIsModalVisible(true);
+        } catch (error) {
+            console.error('Failed to update order status:', error);
+            alert('Thanh toán thành công nhưng không thể cập nhật trạng thái đơn hàng.');
+        }
+    };
+
+    const handleOk = () => {
+        setIsModalVisible(false);
+        navigate('/'); // Điều hướng người dùng đến trang order/:id
+    };
+
     return (
         <aside className={cx('wrapper')}>
             <div className={cx('Section__Container')}>
@@ -33,7 +74,9 @@ function OrderInfor({ userName, phone, address, totalPrice, discount, handlePaym
                     <div className={cx('order')}>
                         <h3 className={cx('block-header__title')}>Đơn hàng</h3>
                         <div className={cx('block-header__sub-title')}>
-                            <p className={cx('sub-title-text')}>1 sản phẩm.</p>
+                            <p className={cx('sub-title-text')}>
+                                {order.orderItems && order.orderItems.amount ? order.orderItems.amount : '0'} sản phẩm.
+                            </p>
                             <p className={cx('sub-title-link')}>
                                 Xem thông tin
                                 <svg
@@ -74,19 +117,41 @@ function OrderInfor({ userName, phone, address, totalPrice, discount, handlePaym
                         </div>
                     </div>
                     <div className={cx('buy')}>
-                        <Button
-                            large
-                            onClick={handlePayment}
-                            disabled={!isPaymentEnabled} // Nút sẽ bị vô hiệu hóa nếu chưa chọn phương thức thanh toán
-                        >
-                            Thanh Toán
-                        </Button>
+                        {/* Hiển thị PayPal Button nếu chọn PayPal */}
+                        {selectedPaymentMethod === 'paypal' && sdkReady === true ? (
+                            <div className={cx('paypal-button-container')}>
+                                <PayPalButton
+                                    amount={totalPrice}
+                                    onSuccess={onSuccessPaypal}
+                                    onError={() => {
+                                        alert('Error');
+                                    }}
+                                />
+                            </div>
+                        ) : (
+                            <Button
+                                large
+                                onClick={handlePayment}
+                                disabled={!isPaymentEnabled} // Nút sẽ bị vô hiệu hóa nếu chưa chọn phương thức thanh toán
+                            >
+                                Thanh Toán
+                            </Button>
+                        )}
                         {!isPaymentEnabled && (
                             <p style={{ color: 'red', marginTop: '8px' }}>Vui lòng chọn phương thức thanh toán!</p>
                         )}
                     </div>
                 </div>
             </div>
+            <Modal
+                title="Thanh toán thành công"
+                visible={isModalVisible}
+                onOk={handleOk}
+                onCancel={() => setIsModalVisible(false)}
+                okText="OK"
+            >
+                <p>Thanh toán của bạn đã thành công và trạng thái đơn hàng đã được cập nhật!</p>
+            </Modal>
         </aside>
     );
 }
