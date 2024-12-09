@@ -19,8 +19,12 @@ app.use(express.json()); // Thay vì dùng bodyParser.json()
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true })); // Thay vì dùng bodyParser.urlencoded()
 
-app.use(express.json({ limit: "100mb" })); // Điều chỉnh theo nhu cầu
-app.use(express.urlencoded({ limit: "5mb", extended: true })); // Điều chỉnh theo nhu cầu
+// Middleware để xử lý tải lên file (nếu có)
+app.use(forms.array());  // Nếu bạn muốn xử lý nhiều tệp tải lên
+
+// Cấu hình giới hạn kích thước payload cho JSON và URL-encoded
+app.use(express.json({ limit: "50mb" })); // Giới hạn payload JSON tối đa là 50MB
+app.use(express.urlencoded({ limit: "50mb", extended: true })); // Giới hạn URL-encoded tối đa là 50MB
 
 app.use(
   cors({
@@ -167,6 +171,7 @@ try {
   
 }
 });
+
 
 
 routes(app);
