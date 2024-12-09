@@ -59,12 +59,18 @@
         "webpack": "^5.95.0",
         "webpack-cli": "^5.1.4"
     },
+    // "scripts": {
+    //     "start": "react-app-rewired start",
+    //     "build": "react-app-rewired build",
+    //     "test": "react-app-rewired test",
+    //     "eject": "react-app-rewired eject"
+    // },
     "scripts": {
-        "start": "react-app-rewired start",
-        "build": "react-app-rewired build",
-        "test": "react-app-rewired test",
-        "eject": "react-app-rewired eject"
-    },
+  "start": "react-scripts start",
+  "build": "react-scripts build",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject"
+},
     "eslintConfig": {
         "extends": [
             "react-app",
